@@ -5,6 +5,7 @@ feature 'posts' do
   context 'no posts have been added' do
 
     scenario 'should display a prompt to add a post' do
+      sign_in
       visit '/posts'
       expect(page).to have_content 'No posts yet'
       expect(page).to have_link 'Post an Image'
@@ -15,6 +16,7 @@ feature 'posts' do
   context 'adding posts' do
 
     scenario 'display posts' do
+      sign_in
       visit '/posts'
       click_link 'Post an Image'
       attach_file('Image', "#{Rails.root}/spec/support/uploads/cat.jpeg")
@@ -26,6 +28,7 @@ end
   context 'deleting posts' do
 
   scenario 'removes a post when a user clicks a delete link' do
+    sign_in
     visit '/posts'
     click_link 'Post an Image'
     attach_file('Image', "#{Rails.root}/spec/support/uploads/cat.jpeg")
